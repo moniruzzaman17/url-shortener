@@ -135,7 +135,7 @@
     // Regenerate URL
     $(document).on('click', '#regenerateUrl', function (e) {
         e.preventDefault();
-
+        e.stopPropagation(); 
         let urlId = $(this).attr('data');
 
         $.ajax({

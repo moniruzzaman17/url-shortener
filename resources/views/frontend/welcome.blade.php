@@ -86,7 +86,9 @@
             });
         });
 
-        $('#copyResult').on('click', function () {
+        $('#copyResult').on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation(); 
             let shortURL = $('#shortURL').val();
             navigator.clipboard.writeText(shortURL).then(function () {
                 toastr.success('Short URL copied to clipboard!');

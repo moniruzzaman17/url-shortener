@@ -11,20 +11,15 @@
         color: #F36D39;
     }
     .cards {
-      margin: 0 auto;
-      text-align: center;
-        display: -webkit-flex;
+        margin: 0 auto;
+        text-align: center;
         display: flex;
-      border-radius: 10px;
-        -webkit-justify-content: center; 
-      justify-content: center;
-      -webkit-flex-wrap: wrap; 
+        border-radius: 10px;
+        justify-content: center;
         flex-wrap: wrap;
         margin-top: 15px;
         padding: 1.5%;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box; 
-      box-sizing: border-box;
+        box-sizing: border-box;
     }
     
     .shadow{
@@ -72,7 +67,7 @@
         }
     }
     .card-title{
-        font: bold 36px asap, arial;
+        font: bold 20px asap, arial;
         color: #555;
         margin-bottom: 22px;
     }

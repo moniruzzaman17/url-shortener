@@ -9,6 +9,9 @@ Route::post('/shorten-url', [WelcomeController::class, 'shortenUrl'])->name('url
 Route::get('/{shortCode}', [WelcomeController::class, 'redirectUrl'])->name('url.redirect');
 Route::get('/docs/api-documentation', [WelcomeController::class, 'apiDocs'])->name('api.docs');
 
+Route::get('/url/track-url', [WelcomeController::class, 'showTrackUrlForm'])->name('track-url');
+Route::post('/track-clicks', [WelcomeController::class, 'trackClicks'])->name('url.trackClicks');
+
 Route::get('/auth/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login.submit');
 

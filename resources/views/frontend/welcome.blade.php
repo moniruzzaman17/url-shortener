@@ -6,7 +6,7 @@
             <h1 class="w-100 text-center form-title">STEADfast URL Shortener</h1>
             <div class="card shadow cards text-center" id="shortForm">
                 <div class="card-body">
-                    <h2 class="card-title">Paste the URL to be shortened</h2>
+                    <h5 class="card-title">Paste the URL to be shortened</h5>
                     <form method="POST" id="shortenedForm" class="d-flex" enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="input_url" id="url-input" placeholder="Enter the link here">

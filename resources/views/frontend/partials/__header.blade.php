@@ -16,6 +16,9 @@
                         <a href="{{ route('index') }}" class="nav-link"><i class="fas fa-home"></i>&nbsp;Home</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('track-url') }}" class="nav-link"><i class="fas fa-mouse"></i>&nbsp;URL Click Counter</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('api.docs') }}" class="nav-link"><i class="fas fa-file-word"></i>&nbsp;Api Documentation</a>
                     </li>
                     @guest

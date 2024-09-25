@@ -88,4 +88,46 @@ class WelcomeController extends Controller
     public function apiDocs(){
         return view('frontend.api-docs');
     }
+
+    public function showTrackUrlForm(){
+        if (request('shorten_url')) {
+            $shortUrl = str_replace(url('/') . '/', '', request('shorten_url'));
+            $url = Url::where('short_url', $shortUrl)->first();
+            if ($url) {
+                $short_url = request('shorten_url');
+                $click_count = $url->click_count;
+            }
+            else{
+                return redirect()->back()->with('failed', 'Url not found!');
+            }
+        }
+        else{
+            $short_url = "";
+            $click_count = 0;
+        }
+        return view('frontend.track-url', compact('short_url', 'click_count'));
+    }
+    public function trackClicks(Request $request)
+    {
+        $request->validate([
+            'input_url' => 'required|url',
+        ]);
+
+        $shortUrl = str_replace(url('/') . '/', '', $request->input_url);
+
+        $url = Url::where('short_url', $shortUrl)->first();
+
+        if ($url) {
+            return response()->json([
+                'success' => true,
+                'short_url' => $request->input_url,
+                'click_count' => $url->click_count
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Shortened URL not found'
+            ], 404);
+        }
+    }
 }

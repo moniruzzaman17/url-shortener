@@ -50,12 +50,11 @@
 @push('scripts')
 <script>
     $(document).ready(function () {
-        // Handle form submission for URL shortening
         $('#shortenedForm').on('submit', function (e) {
             e.preventDefault();
             let input_url = $('#url-input').val();
             $.ajax({
-                url: '{{ route("url.shorten") }}',  // Backend route for URL shortening
+                url: '{{ route("url.shorten") }}',
                 method: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -65,8 +64,6 @@
                     if (response.success) {
                         $('#shortForm').hide();
                         $('#successDiv').show();
-
-                        // Display shortened and original URLs
                         $('#shortURL').val(response.short_url);
                         $('#longURL').text(response.long_url);
                         refreshClickHistory();
@@ -89,7 +86,6 @@
             });
         });
 
-        // Handle "Copy URL" button click
         $('#copyResult').on('click', function () {
             let shortURL = $('#shortURL').val();
             navigator.clipboard.writeText(shortURL).then(function () {
@@ -113,7 +109,7 @@
     // Delete URL
     $(document).on('click', '#deleteUrl', function (e) {
         e.preventDefault();
-
+        e.stopPropagation(); 
         let urlId = $(this).attr('data');
 
         if (confirm('Are you sure you want to delete this URL?')) {

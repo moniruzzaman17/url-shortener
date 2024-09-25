@@ -40,20 +40,18 @@
         });
       $('#loginForm').on('submit', function(e) {
           e.preventDefault();
-  
-          // Clear previous errors
           $('#emailError').text('');
           $('#passwordError').text('');
   
           // AJAX request
           $.ajax({
-              url: '{{ route("login.submit") }}', // The route where form is submitted
+              url: '{{ route("login.submit") }}',
               method: 'POST',
-              data: $(this).serialize(), // Serialize form data
+              data: $(this).serialize(),
               success: function(response) {
                   if (response.success) {
-                      toastr.success(response.message); // Toastr success message
-                      window.location.href = "{{ route('index') }}"; // Redirect to the index route
+                      toastr.success(response.message);
+                      window.location.href = "{{ route('index') }}";
                   }
                   else{
                     toastr.success("dd");

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -44,6 +46,35 @@ class AuthController extends Controller
             'success' => false,
             'message' => 'Invalid login credentials'
         ], 401);
+    }
+
+    public function register(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        // If validation fails rturn errors
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Create new user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // Hash the password
+        ]);
+
+        // Response with success
+        return response()->json([
+            'success' => true,
+            'message' => 'Registration successful! Redirecting to login page...'
+        ]);
     }
 
     public function logout(Request $request)

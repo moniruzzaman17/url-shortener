@@ -29,14 +29,12 @@ class WelcomeController extends Controller
             
             $shortCode = $this->generateUniqueShortCode();
 
-            // Save the URL to the database
             $url = Url::create([
                 'original_url' => $request->input_url,
                 'short_url' => $shortCode,
                 'user_id' => Auth::check() ? Auth::id() : null,
             ]);
 
-            // Return the shortened URL in the response
             return response()->json([
                 'success' => true,
                 'short_url' => url($shortCode),

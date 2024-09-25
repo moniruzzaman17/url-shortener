@@ -16,6 +16,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/regenerate-url/{id}', [WelcomeController::class, 'regenerate'])->name('url.regenerate');
     Route::delete('/delete-url/{id}', [WelcomeController::class, 'delete'])->name('url.delete');
+
 });
 
 Route::get('/auth/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');

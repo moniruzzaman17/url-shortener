@@ -1,66 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# STEADfast URL Shortener
 
-## About Laravel
+A URL Shortener built using Laravel. This project allows users to shorten long URLs and track the click counts.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Before you begin, ensure you have the following tools installed on your machine:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **PHP** (>= 8.2)
+- **Composer** (for managing PHP dependencies)
+- **Node.js and npm** (for managing front-end dependencies)
+- **Git** (for cloning the repository)
+- **Laravel Framework** (v11.9 or higher)
 
-## Learning Laravel
+## Getting Started
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Clone the Repository
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/moniruzzaman17/url-shortener.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Navigate into the project directory:
 
-## Laravel Sponsors
+```bash
+cd url-shortener
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. Install PHP Dependencies
 
-### Premium Partners
+Make sure you have Composer installed. If not, download it from [here](https://getcomposer.org/download/).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Run the following command to install the PHP dependencies:
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Install Node.js Dependencies (Optional)
 
-## Code of Conduct
+Make sure you have [Node.js](https://nodejs.org/en/download/) and npm installed. Run the following command to install Node dependencies:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+npm install
+```
 
-## Security Vulnerabilities
+If you need to compile assets, run:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+npm run dev
+```
 
-## License
+For production-ready assets, use:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm run prod
+```
+
+### 4. Set Up Environment File
+
+1. Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+2. Open the `.env` file in your favorite text editor and update the following variables:
+
+- **APP_URL**: This should match your local environment URL (e.g., `http://localhost/url-shortener`)
+- **ASSET_URL**: This should also match your local environment URL (e.g., `http://localhost/url-shortener`)
+
+```env
+APP_URL=http://localhost/url-shortener
+ASSET_URL=http://localhost/url-shortener
+```
+
+3. Set up your database configurations (MySQL). For XAMPP/WAMP, the default settings are usually:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Create a Database
+
+Create a new MySQL database using phpMyAdmin (or any other tool). Name it as per your `.env` configuration (e.g., `url_shortener`).
+
+```sql
+CREATE DATABASE url_shortener_db;
+```
+
+### 6. Run Migrations and Seeder
+
+Run the following Artisan command to migrate and seed the database tables:
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+### 7. Generate Application Key
+
+Generate an application key using the Artisan command:
+
+```bash
+php artisan key:generate
+```
+
+### 8. Serve the Application
+
+Finally, serve the application locally:
+
+```bash
+php artisan serve
+```
+
+Visit `http://localhost:8000` in your browser to view the application.
+
+### 9. Using XAMPP/WAMP
+
+If you're using XAMPP or WAMP, place the project folder inside the `htdocs` folder (for XAMPP) or the respective folder for WAMP.
+
+1. After placing the project inside `htdocs`:
+   - Access the project using `http://localhost/url-shortener/public`
+2. Make sure your `.env` file's `APP_URL` and `ASSET_URL` match your local path:
+   - Example: `http://localhost/url-shortener`
+
+### 10. Clear Caches (If Necessary)
+
+If you run into issues, try clearing the caches:
+
+```bash
+php artisan config:cache
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+```
+
+## Tools Required
+
+- **Composer** (for managing PHP dependencies)
+  - [Download Composer](https://getcomposer.org/download/)
+- **Node.js and npm** (for managing front-end dependencies)
+  - [Download Node.js](https://nodejs.org/en/download/)
+- **Git** (for cloning the repository)
+  - [Download Git](https://git-scm.com/)
+- **PHP** (>= 8.2)
+- **Laravel Framework** (v11.9 or higher)
+- **XAMPP/WAMP** (for running Apache and MySQL)
+
+## Troubleshooting
+
+- **Database Connection Error**: Check your `.env` file for correct database settings and ensure your database server is running.
+- **Permission Errors**: If you encounter permission issues, run:
+
+```bash
+sudo chmod -R 775 storage
+sudo chmod -R 775 bootstrap/cache
+```
+
+- **Composer Not Found**: Ensure that Composer is installed and added to your system's PATH.
+- **Error 500**: Check your logs in `storage/logs/laravel.log` for detailed error messages.
+
+---

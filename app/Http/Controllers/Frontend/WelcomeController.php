@@ -12,7 +12,7 @@ class WelcomeController extends Controller
 {
     public function index(Request $request) {
 
-        $userUrls = Auth::check() ? Auth::user()->urls()->latest()->take(6)->get() : [];
+        $userUrls = Auth::check() ? Auth::user()->urls()->latest()->get() : [];
         return view('frontend.welcome', compact('userUrls'));
     }
     public function shortenUrl(Request $request){
@@ -59,5 +59,31 @@ class WelcomeController extends Controller
         $url = Url::where('short_url', $shortCode)->firstOrFail();
         $url->increment('click_count');
         return redirect($url->original_url);
+    }
+    
+    public function regenerate($id)
+    {
+        $url = Url::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
+        $newShortCode = $this->generateUniqueShortCode();
+
+        $url->short_url = $newShortCode;
+        $url->save();
+
+        return response()->json([
+            'success' => true,
+            'short_url' => $newShortCode,
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $url = Url::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $url->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'URL deleted successfully',
+        ]);
     }
 }

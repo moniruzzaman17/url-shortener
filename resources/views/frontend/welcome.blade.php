@@ -98,8 +98,68 @@
                 toastr.error('Failed to copy URL.');
             });
         });
+
+        $('#copyUrl').on('click', function (e) {
+            e.preventDefault();
+            let url = $(this).attr('data');
+            navigator.clipboard.writeText(url).then(function () {
+                toastr.success('Short URL copied to clipboard!');
+            }).catch(function (error) {
+                toastr.error('Failed to copy URL.');
+            });
+        });
     });
     
+    // Delete URL
+    $(document).on('click', '#deleteUrl', function (e) {
+        e.preventDefault();
+
+        let urlId = $(this).attr('data');
+
+        if (confirm('Are you sure you want to delete this URL?')) {
+            $.ajax({
+                url: '{{ route("url.delete", '') }}/' + urlId,
+                method: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        refreshClickHistory();
+                    }
+                },
+                error: function (xhr) {
+                    toastr.error('Error deleting the URL. Please try again.');
+                }
+            });
+        }
+    });
+
+    // Regenerate URL
+    $(document).on('click', '#regenerateUrl', function (e) {
+        e.preventDefault();
+
+        let urlId = $(this).attr('data');
+
+        $.ajax({
+            url: '{{ route("url.regenerate", '') }}/' + urlId,
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success('URL regenerated successfully!');
+                    refreshClickHistory();
+                }
+            },
+            error: function (xhr) {
+                toastr.error('Error regenerating the URL. Please try again.');
+            }
+        });
+    });
+
     function refreshClickHistory() {
         jQuery.ajax({
             url: window.location.href,

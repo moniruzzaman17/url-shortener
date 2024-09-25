@@ -13,6 +13,9 @@ Route::post('/auth/login', [AuthController::class, 'login'])->name('login.submit
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::post('/regenerate-url/{id}', [WelcomeController::class, 'regenerate'])->name('url.regenerate');
+    Route::delete('/delete-url/{id}', [WelcomeController::class, 'delete'])->name('url.delete');
 });
 
 Route::get('/auth/register', [AuthController::class, 'showRegisterForm'])->name('register');

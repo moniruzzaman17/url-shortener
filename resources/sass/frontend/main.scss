@@ -96,3 +96,29 @@
         color: white;
     }
 }
+.clickCard{
+    position: relative;
+    #deleteUrl{
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 8px;
+    }
+    &:hover{
+        #deleteUrl, #regenerateUrl, #copyUrl{
+            display: block;
+        }
+    }
+    #regenerateUrl{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 8px;
+    }
+    #copyUrl{
+        display: none;
+        position: absolute;
+        bottom: 0;
+        right: 8px;
+    }
+}

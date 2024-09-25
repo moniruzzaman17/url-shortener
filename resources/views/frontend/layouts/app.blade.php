@@ -36,7 +36,8 @@
             "hideMethod": "fadeOut"
         };
     </script>
-    @stack('script')<script>
+    @stack('scripts')
+    <script>
         @if(Session::has('success'))
             toastr.success("{{ Session::get('success') }}");
         @endif

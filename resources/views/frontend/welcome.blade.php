@@ -96,19 +96,19 @@
                 toastr.error('Failed to copy URL.');
             });
         });
-
-        $('#copyUrl').on('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation(); 
-            let url = $(this).attr('data');
-            navigator.clipboard.writeText(url).then(function () {
-                toastr.success('Short URL copied to clipboard!');
-            }).catch(function (error) {
-                toastr.error('Failed to copy URL.');
-            });
-        });
     });
     
+    $(document).on('click', '#copyUrl', function (e) {
+        e.preventDefault();
+        e.stopPropagation(); 
+        let url = $(this).attr('data');
+        navigator.clipboard.writeText(url).then(function () {
+            toastr.success('Short URL copied to clipboard!');
+        }).catch(function (error) {
+            toastr.error('Failed to copy URL.');
+        });
+    });
+
     // Delete URL
     $(document).on('click', '#deleteUrl', function (e) {
         e.preventDefault();

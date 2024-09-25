@@ -12,12 +12,21 @@
           
             <div class="collapse navbar-collapse justify-content-end text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    @guest
                     <li class="nav-item">
                         <a href="{{ route('login') }}" class="btn btn-outline-success"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
                     </li>
+                    @endguest
+                    @auth
                     <li class="nav-item ms-md-2 mt-2 mt-md-0">
-                        <a href="" class="btn btn-outline-success"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
-                    </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="#" class="btn btn-outline-success" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>&nbsp;Logout
+                        </a>
+                    </li>                    
+                    @endauth
                 </ul>
             </div>
         </div>

@@ -8,10 +8,10 @@
             <h2 class="p-3">Login</h2>
           </div>
           <div class="card-body">
-            <form>
+            <form method="POST" enctype="multipart/form-data" id="loginForm">
               <div class="mb-4">
                 <label for="email" class="form-label required">Email</label>
-                <input type="email" name class="form-control" id="email" />
+                <input type="email" name="email" class="form-control" id="email" />
               </div>
               <div class="mb-4">
                 <label for="password" class="form-label required">Password</label>
@@ -30,4 +30,49 @@
       </div>
     </div>
   </div>
+@push('script')
+  <script>
+  $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+      $('#loginForm').on('submit', function(e) {
+          e.preventDefault();
+  
+          // Clear previous errors
+          $('#emailError').text('');
+          $('#passwordError').text('');
+  
+          // AJAX request
+          $.ajax({
+              url: '{{ route("login.submit") }}', // The route where form is submitted
+              method: 'POST',
+              data: $(this).serialize(), // Serialize form data
+              success: function(response) {
+                  if (response.success) {
+                      toastr.success(response.message); // Toastr success message
+                      window.location.href = "{{ route('index') }}"; // Redirect to the index route
+                  }
+                  else{
+                    toastr.success("dd");
+                  }
+              },
+            error: function(xhr) {
+                var res = xhr.responseJSON;
+                if (!res.success && res.errors) {
+                    $.each(res.errors, function(field, messages) {
+                        $('#' + field + 'Error').text(messages[0]);
+                        toastr.error(messages[0]);
+                    });
+                } else {
+                    toastr.error('Something went wrong');
+                }
+            }
+          });
+      });
+  });
+  </script>
+@endpush
 @endsection

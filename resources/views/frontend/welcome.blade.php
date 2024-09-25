@@ -19,12 +19,17 @@
                 </div>
                 </div>
             </div>
-            <div class="card cards mt-5 text-center">
-                <div class="card-body">
-                    <h2 class="card-title">Want More Features? Become a member!</h2>
-                    <a href="{{ route('register') }}" class="createAccountBtn">Create Account</a>
+            @guest
+                <div class="card cards mt-5 text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">Want More Features? Become a member!</h2>
+                        <a href="{{ route('register') }}" class="createAccountBtn">Create Account</a>
+                    </div>
                 </div>
-            </div>
+            @endguest
+            @auth
+                @include('frontend.partials.dashboard')
+            @endauth
         </div>
     </div>
 </div>

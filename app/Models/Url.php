@@ -14,5 +14,6 @@ class Url extends Model
         'short_url',
         'user_id',
         'click_count',
+        'is_from_api',
     ];
 }

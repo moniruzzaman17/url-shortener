@@ -25,9 +25,11 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box; 
       box-sizing: border-box;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     }
     
+    .shadow{
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
     .cards:hover {
       box-shadow: 0 4px 10px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.23);
     }

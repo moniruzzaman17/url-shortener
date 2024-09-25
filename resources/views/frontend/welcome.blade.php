@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
         <div class="col-md-5 mt-4">
             <h1 class="w-100 text-center form-title">STEADfast URL Shortener</h1>
-            <div class="card cards card-2 text-center">
+            <div class="card shadow cards text-center">
                 <div class="card-body">
                     <h2 class="card-title">Paste the URL to be shortened</h2>
                     <form action="" class="d-flex">
@@ -19,7 +19,7 @@
                 </div>
                 </div>
             </div>
-            <div class="card cards card-2 mt-3 text-center">
+            <div class="card cards mt-5 text-center">
                 <div class="card-body">
                     <h2 class="card-title">Want More Features? Become a member!</h2>
                     <a href="{{ route('register') }}" class="createAccountBtn">Create Account</a>

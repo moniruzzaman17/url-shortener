@@ -99,6 +99,7 @@
 
         $('#copyUrl').on('click', function (e) {
             e.preventDefault();
+            e.stopPropagation(); 
             let url = $(this).attr('data');
             navigator.clipboard.writeText(url).then(function () {
                 toastr.success('Short URL copied to clipboard!');

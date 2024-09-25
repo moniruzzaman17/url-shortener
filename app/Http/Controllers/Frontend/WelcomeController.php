@@ -10,4 +10,8 @@ class WelcomeController extends Controller
     public function index() {
         return view('frontend.welcome');
     }
+    
+    public function register() {
+        return view('frontend.register');
+    }
 }

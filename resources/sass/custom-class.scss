@@ -49,3 +49,8 @@
 .fs-20 {
     font-size: 20px !important;
 }
+
+.required:after {
+    content:" *";
+    color: red;
+  }

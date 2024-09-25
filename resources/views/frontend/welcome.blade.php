@@ -1,38 +1,31 @@
 @extends('frontend.layouts.app')
 @section('content')
-<div class="navbar-wrapper w-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand d-flex flex-column">
-                <img src="{{ asset('images/logo.png') }}" class="w-100" alt=""> 
-                <span class="text-center fs-14">URL Shortener</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse justify-content-end text-center" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="" class="btn btn-outline-success"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
-                    </li>
-                    <li class="nav-item ms-md-2 mt-2 mt-md-0">
-                        <a href="" class="btn btn-outline-success"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
-                    </li>
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li> --}}
-                </ul>
+<div class="container-fluid front-content-wrapper">
+  <div class="row justify-content-center">
+        <div class="col-md-5 mt-4">
+            <h1 class="w-100 text-center form-title">STEADfast URL Shortener</h1>
+            <div class="card cards card-2 text-center">
+                <div class="card-body">
+                    <h2 class="card-title">Paste the URL to be shortened</h2>
+                    <form action="" class="d-flex">
+                        <input type="text" id="url-input" placeholder="Enter the link here">
+                        <div id="formbutton">
+                            <input type="submit" value="Shorten URL">
+                        </div>  
+                    </form>
+                    <p class="mt-3">STEADfast URL Shortener is a free tool to shorten URLs and generate short links</p>
+                <div class="info-wrapper">
+                    
+                </div>
+                </div>
+            </div>
+            <div class="card cards card-2 mt-3 text-center">
+                <div class="card-body">
+                    <h2 class="card-title">Want More Features? Become a member!</h2>
+                    <a href="{{ route('register') }}" class="createAccountBtn">Create Account</a>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
 </div>
 @endsection

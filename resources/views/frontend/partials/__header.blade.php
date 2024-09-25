@@ -12,6 +12,12 @@
           
             <div class="collapse navbar-collapse justify-content-end text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ route('index') }}" class="nav-link"><i class="fas fa-home"></i>&nbsp;Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('api.docs') }}" class="nav-link"><i class="fas fa-file-word"></i>&nbsp;Api Documentation</a>
+                    </li>
                     @guest
                     <li class="nav-item">
                         <a href="{{ route('login') }}" class="btn btn-outline-success"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>

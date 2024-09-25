@@ -84,4 +84,8 @@ class WelcomeController extends Controller
             'message' => 'URL deleted successfully',
         ]);
     }
+
+    public function apiDocs(){
+        return view('frontend.api-docs');
+    }
 }
